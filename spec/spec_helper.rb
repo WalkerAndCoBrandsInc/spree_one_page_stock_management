@@ -39,8 +39,12 @@ require 'capybara/rails'
 # Requires factories defined in lib/spree_one_page_stock_management/factories.rb
 require 'spree_one_page_stock_management/factories'
 
+require 'selenium-webdriver'
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+
+  Capybara.server = :webrick
 
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new app,
