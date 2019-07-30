@@ -29,6 +29,7 @@ require 'spree/testing_support/capybara_ext'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
+require "paperclip/matchers"
 
 require 'capybara/rspec'
 require 'capybara-screenshot'
@@ -38,8 +39,12 @@ require 'capybara/rails'
 # Requires factories defined in lib/spree_one_page_stock_management/factories.rb
 require 'spree_one_page_stock_management/factories'
 
+require 'selenium-webdriver'
+
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+
+  Capybara.server = :webrick
 
   Capybara.register_driver :chrome do |app|
     Capybara::Selenium::Driver.new app,
@@ -54,6 +59,7 @@ RSpec.configure do |config|
 
   # Infer an example group's spec type from the file location.
   config.infer_spec_type_from_file_location!
+  config.include Paperclip::Shoulda::Matchers
 
   # == URL Helpers
   #
@@ -62,6 +68,7 @@ RSpec.configure do |config|
   # visit spree.admin_path
   # current_path.should eql(spree.products_path)
   config.include Spree::TestingSupport::UrlHelpers
+  config.include ActionDispatch::TestProcess
 
   # == Requests support
   #

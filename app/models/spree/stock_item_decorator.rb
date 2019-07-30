@@ -1,3 +1,5 @@
 Spree::StockItem.class_eval do
-  self.whitelisted_ransackable_associations = ['variant']
+  def product
+    variant
+  end
 end

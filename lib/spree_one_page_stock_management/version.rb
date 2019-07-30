@@ -11,7 +11,7 @@ module SpreeOnePageStockManagement
     MAJOR = 0
     MINOR = 0
     TINY  = 1
-    PRE   = 'alpha'.freeze
+    PRE   = 'alpha2'.freeze
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join('.')
   end
